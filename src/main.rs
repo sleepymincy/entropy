@@ -70,15 +70,15 @@ fn shannon_entropy(password: &str) -> (f64, f64) {
     for c in password.chars() {
         *character_frequency.entry(c).or_insert(0) += 1;
     }
-    let l: f64 = password_length as f64;
-    let mut h: f64 = 0.0;
+    let password_length_float: f64 = password_length as f64;
+    let mut entropy: f64 = 0.0;
 
-    for &v in character_frequency.values() {
-        let p: f64 = (v as f64) / l;
-        h += -p * p.log2();
+    for &values in character_frequency.values() {
+        let probability: f64 = (values as f64) / password_length_float;
+        entropy += -probability * probability.log2();
     }
 
-    (h, h * l)
+    (entropy, entropy * password_length_float)
 }
 
 fn main() {
@@ -107,7 +107,7 @@ fn main() {
 
     let password_length: usize = password.chars().count();
     let character_set: usize = estimate_charset(&password);
-    let trigraph_bits: f64 = if password_length > 0 && character_set > 0 {
+    let charset_bits: f64 = if password_length > 0 && character_set > 0 {
         (password_length as f64) * (character_set as f64).log2()
     } else {
         0.0
@@ -126,8 +126,8 @@ fn main() {
     };
 
     println!("Password length: {}", password_length);
-    println!("Charsetsize: {}", character_set);
-    println!("Trigraph entropy bits: {:.6}", trigraph_bits);
+    println!("Charset size: {}", character_set);
+    println!("Charset bits: {:.6}", charset_bits);
     println!("Shannon entropy per character: {:.6}", shannon_char);
     println!("Shannon entropy total: {:.6}", shannon_total);
     println!("Password total strength: {}", strength)
