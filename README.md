@@ -1,4 +1,4 @@
-Simple CLI Shannon entropy calculator written in Rust
+Simple Shannon entropy calculator for your CLI written in Rust
 
 Research that made this possible:
 - [This repository](https://github.com/tests-always-included/password-strength) and [this website](https://alecmccutcheon.github.io/Password-Entropy-Calculator/)
