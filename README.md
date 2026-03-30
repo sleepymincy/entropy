@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> Migrated to [Codeberg](https://codeberg.org/mincy/entropy)
+
 Simple Shannon entropy calculator for your CLI written in Rust
 
 Research that made this possible:
